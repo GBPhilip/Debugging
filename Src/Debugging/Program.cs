@@ -3,8 +3,10 @@
     using Ploeh.AutoFixture;
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
+    using Visualisers;
+   
+    
    
     using System.Threading.Tasks;
 
@@ -41,7 +43,7 @@
             Console.WriteLine("15: Debugger Proxy");
             Console.WriteLine("16: Threading");
             Console.WriteLine("17: Parallel");
-
+            Console.WriteLine("18: Visualisers");
             var selection = Console.ReadLine();
             switch (selection)
             {
@@ -137,11 +139,21 @@
                         ParallelExample();
                         break;
                     }
+                case "18":
+                {
+                    VisualiserDemo();
+                    break;
+                }
             }
 
             Console.ReadLine();
         }
 
+        private static void VisualiserDemo()
+        {
+            var exampleString = "Hello World";
+      //      StringDebuggerVisualiser.TestShowVisualizer(exampleString);
+        }
         private static void ParallelExample()
         {
             var names = new List<string> { "Bob", "Judy", "Chris", "Ashley" };
@@ -189,8 +201,7 @@
 
         private static void DebuggerProxy()
         {
-            var address = new Address { Road = "High Street", Town = "Newport Pagnell" };
-            var person = new PersonDebug { Name = "fred", Age = 20, Address = address };
+            var person = new PersonDebug { FirstName = "Freda", Surname = "Smith", CreditCard = "1234 5678 1234 5678"};
         }
         private static void ProjectOptions()
         {
@@ -198,7 +209,7 @@
             while (true)
             {
                 Console.WriteLine($"Count is {counter})");
-                counter++;
+                counter++; 
             }
         }
 

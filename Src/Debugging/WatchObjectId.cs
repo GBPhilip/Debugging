@@ -51,8 +51,9 @@
 
     public class PersonBrowse
     {
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public string Name { get; set; }
-
+        [DebuggerBrowsable(DebuggerBrowsableState.Collapsed)]
         public int Age { get; set; }
 
         [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
@@ -62,17 +63,21 @@
     public class Address
     {
         public string Road { get; set; }
+        [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
         public string Town { get; set; }
     }
 
     [DebuggerTypeProxy(typeof(PersonDebugProxy))]
     public class PersonDebug
     {
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string Surname { get; set; }
 
         public int Age { get; set; }
 
         public Address Address { get; set; }
+
+        public string CreditCard { get; set; }
     }
 
     public class PersonDebugProxy
@@ -83,6 +88,7 @@
         {
             this.personDebug = personDebug;
         }
-        public string Details => this.personDebug.Name + this.personDebug.Age;
+        public string Name => $"{this.personDebug.FirstName} {this.personDebug.Surname}";
+        public string CreditCard => $"{this.personDebug.CreditCard.Substring(0, 4)} **** **** ****";
     }
 }
