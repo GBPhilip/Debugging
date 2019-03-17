@@ -2,29 +2,41 @@
 {
     using System;
     using System.Threading;
+    using System.Threading.Tasks;
 
     internal static class MultiThread
     {
         internal static void Count()
         {
-            var job = new ThreadStart(ThreadUpJob);
-            var thread = new Thread(job);
-            thread.Name = "CountUp";
-            thread.Start();
-            for (var down = 100; down > 0; down--)
+            object lock1 = new object();
+            object lock2 = new object();
+            Console.WriteLine("Starting...");
+            var task1 = Task.Run(() =>
             {
-                Console.WriteLine($"Countdown {down}");
-                Thread.Sleep(500);
-            }
-        }
+                lock (lock1)
+                {
+                    Thread.Sleep(1000);
+                    lock (lock2)
+                    {
+                        Console.WriteLine("Finished Thread 1");
+                    }
+                }
+            });
 
-        private static void ThreadUpJob()
-        {
-            for (var up = 0; up < 100; up++)
+            var task2 = Task.Run(() =>
             {
-                Console.WriteLine($"Countup {up}");
-                Thread.Sleep(500);
-            }
+                lock (lock2)
+                {
+                    Thread.Sleep(1000);
+                    lock (lock1)
+                    {
+                        Console.WriteLine("Finished Thread 2");
+                    }
+                }
+            });
+
+            Task.WaitAll(task1, task2);
+            Console.WriteLine("Finished...");
         }
 
     }
