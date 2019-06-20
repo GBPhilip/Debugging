@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BasicInterestCalculator\BasicInterestCalculator.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\HighInterestCalculator\HighInterestCalculator.csproj" />
   </ItemGroup>
 
 </Project>
