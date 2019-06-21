@@ -12,6 +12,12 @@ namespace DebuggingCore2._1
             Console.WriteLine("Hello World!");
             ExceptionBreaking();
             //ModulesExceptionBreaking();
+            DebuggerBrowsableExample();
+        }
+
+        private static void DebuggerBrowsableExample()
+        {
+            throw new NotImplementedException();
         }
 
         private static void ExceptionBreaking()
@@ -23,7 +29,7 @@ namespace DebuggingCore2._1
             }
             catch (Exception)
             {
-                throw;
+                var x = 10;
             }
         }
 
@@ -44,11 +50,16 @@ namespace DebuggingCore2._1
 
         private static void DebuggerDisplay()
         {
-            var accountHolders = new List<AccountHolder>
+            var accountHolders = GetAccountHolders();
+        }
+
+        private static List<AccountHolder> GetAccountHolders()
+        {
+            return new List<AccountHolder>
             {
-                new AccountHolder{Name="Zico"},
-                new AccountHolder{Name = "Philip Jarvis"},
-                new AccountHolder{Name = "Sara Paris"}
+                new AccountHolder{Name="Zico", Address = new Address{Road = "High Street", Town = "Cardiff"} },
+                new AccountHolder{Name = "Philip Jarvis", Address = new Address{Road = "Main Street", Town = "Ludlow"}},
+                new AccountHolder{Name = "Sara Paris", Address = new Address{Road = "Aston Lane", Town = "Newport Pagnell"}}
             };
         }
     }

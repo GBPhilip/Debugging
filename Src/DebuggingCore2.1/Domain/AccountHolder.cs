@@ -7,5 +7,8 @@ namespace Domain
     public class AccountHolder
     {
         public string Name { get; set; }
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Collapsed)]
+        public Address Address { get; set; }
     }
 }
