@@ -11,7 +11,7 @@
             object lock1 = new object();
             object lock2 = new object();
             Console.WriteLine("Starting...");
-            var task1 = Task.Run(() =>
+            var task1 = new Task(() =>
             {
                 lock (lock1)
                 {
@@ -23,7 +23,7 @@
                 }
             });
 
-            var task2 = Task.Run(() =>
+            var task2 = new Task(() =>
             {
                 lock (lock2)
                 {

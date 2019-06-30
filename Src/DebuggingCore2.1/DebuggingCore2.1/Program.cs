@@ -2,6 +2,9 @@
 using Domain;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace DebuggingCore2._1
 {
@@ -10,9 +13,29 @@ namespace DebuggingCore2._1
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            ExceptionBreaking();
+            //ExceptionBreaking();
             //ModulesExceptionBreaking();
-            DebuggerBrowsableExample();
+            //DebuggerBrowsableExample();
+            //DebuggerDisplay();
+            //WatchObjectId();
+            Threads();
+        }
+
+        private static void Threads()
+        {
+            var accounts = GetAccountHolders();
+
+            var account1 = new Account { Balance = 1000, Number = 1111, Holder = GetAccountHolders().First() };
+            var account2 = new Account { Balance = 1500, Number = 2222, Holder = accounts.Skip(1).Take(1).First() };
+
+            var transfer1 = new Transfer { From = account1, To = account2, Amount = 500 };
+   
+            var transfer1Caller = new Thread(new ThreadStart(transfer1.ProcessAToB));
+            var transfer2Caller = new Thread(new ThreadStart(transfer1.ProcessBToA));
+            transfer1Caller.Start();
+            transfer2Caller.Start();
+
+            Console.WriteLine($"Balance of account 1 is {account1.Balance} and of account2 is {account2.Balance}");
         }
 
         private static void DebuggerBrowsableExample()
@@ -50,7 +73,17 @@ namespace DebuggingCore2._1
 
         private static void DebuggerDisplay()
         {
+            var aBoolean = false;
             var accountHolders = GetAccountHolders();
+            if (accountHolders.Count == 3)
+            {
+                var displaySomething = "Autos";
+            }
+
+            if (aBoolean)
+            {
+                accountHolders = null;
+            }
         }
 
         private static List<AccountHolder> GetAccountHolders()
@@ -61,6 +94,14 @@ namespace DebuggingCore2._1
                 new AccountHolder{Name = "Philip Jarvis", Address = new Address{Road = "Main Street", Town = "Ludlow"}},
                 new AccountHolder{Name = "Sara Paris", Address = new Address{Road = "Aston Lane", Town = "Newport Pagnell"}}
             };
+        }
+
+        private static void WatchObjectId()
+        {
+            var current = new Account { Balance = 100, Number = 1111, Holder = GetAccountHolders().First() };
+            var changeHolder = GetAccountHolders().Skip(1).Take(1).First();
+            current.ChangeHolder(changeHolder);
+
         }
     }
 }

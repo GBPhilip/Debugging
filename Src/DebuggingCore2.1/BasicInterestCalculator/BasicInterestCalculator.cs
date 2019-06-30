@@ -7,7 +7,7 @@ namespace Debugging.BasicInterestCalculator
     {
         public int CalculatorSavingsInterest(int balance)
         {
-            return (int)(balance * 1.5 / 0);
+            return (int)(balance * 1.5 / 1);
         }
     }
 }

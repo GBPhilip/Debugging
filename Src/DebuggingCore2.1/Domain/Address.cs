@@ -5,4 +5,5 @@
         public string Road { get; set; }
         public string Town { get; set; }
     }
+
 }
