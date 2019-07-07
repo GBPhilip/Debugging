@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Philip</Authors>
+    <PackageTags>Debugging</PackageTags>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="InterestInterface">
+      <HintPath>..\..\Src\DebuggingCore2.1\InterestInterface\bin\Release\netstandard2.0\InterestInterface.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
