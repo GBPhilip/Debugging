@@ -7,7 +7,7 @@ namespace NugetCalculator
     {
         public int CalculatorSavingsInterest(int balance)
         {
-            return (int)(balance * 5.5 / 1);
+            return (int)(balance * 5.5 / 100);
         }
     }
 }

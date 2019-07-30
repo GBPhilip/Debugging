@@ -1,6 +1,7 @@
 ﻿using Debugging.BasicInterestCalculator;
 using Debugging.HighInterestCalculator;
 using Debugging.InterestInterface;
+using NugetCalculator;
 using System;
 
 namespace DebuggingCore2._1
@@ -16,6 +17,10 @@ namespace DebuggingCore2._1
             if (calculatorPicker == "H")
             {
                 return new HighInterestCalculator();
+            };
+            if (calculatorPicker == "N")
+            {
+                return new CalculatorIndependant();
             };
             return new BasicInterestCalculator();
         }
