@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain
 {
-    public class Account
+        public class Account
     {
         public int Number { get; set; }
         public int Balance { get; set; }
@@ -12,7 +12,7 @@ namespace Domain
 
         public void  ChangeHolder(AccountHolder newHolder)
         {
-            newHolder.Name = "Jack Hughes";
+            Holder.Name = "Jack Hughes";
         }
 
         public void IncreaseBalance(int amount)

@@ -3,11 +3,14 @@ using System.Diagnostics;
 
 namespace Domain
 {
+  
+ 
     public class AccountHolder
     {
-       
+      
         public string Name { get; set; }
 
+    
         public Address Address { get; set; }
 
         public AccountHolder()
