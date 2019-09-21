@@ -3,14 +3,12 @@ using System.Diagnostics;
 
 namespace Domain
 {
-  
- 
+    [DebuggerTypeProxy(typeof(AccountHolderProxy))]
     public class AccountHolder
     {
       
         public string Name { get; set; }
 
-    
         public Address Address { get; set; }
 
         public AccountHolder()

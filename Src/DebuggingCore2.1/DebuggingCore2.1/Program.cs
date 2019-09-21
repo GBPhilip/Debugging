@@ -86,7 +86,7 @@ namespace DebuggingCore2._1
 
             var account1 = new Account { Balance = 1000, Number = 1111, Holder = GetAccountHolders().First() };
             var account2 = new Account { Balance = 1500, Number = 2222, Holder = accounts.Skip(1).Take(1).First() };
-            var x = new List<Account> { account1, account2 };
+
             var transfer1 = new Transfer { From = account1, To = account2, Amount = 500 };
 
             var transfer1Caller = new Thread(new ThreadStart(transfer1.ProcessAToB));
@@ -213,6 +213,7 @@ namespace DebuggingCore2._1
         {
             var current = new Account { Balance = 100, Number = 1111, Holder = GetAccountHolders().First() };
             var changeHolder = GetAccountHolders().Skip(1).Take(1).First();
+            var x = GetAccountHolders2();
             var current1 = current;
 
             current1.ChangeHolder(changeHolder);
